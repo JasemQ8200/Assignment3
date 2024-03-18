@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField, RadioField
 from wtforms.validators import DataRequired
@@ -35,7 +35,7 @@ def feedback():
     form = FeedbackForm()
 
     # Check if the form is submitted and valid
-    if form.validate_on_submit():
+    if request.method == 'POST':
         # Get data from the form
         name = form.name.data
         course = form.course.data
