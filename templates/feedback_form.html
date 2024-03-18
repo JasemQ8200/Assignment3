@@ -1,0 +1,36 @@
+<form method="POST"> <!-- Start of the HTML form with method set to POST -->
+    {{ form.hidden_tag() }} <!-- Renders hidden fields required for CSRF protection -->
+    {{ form.csrf_token }} <!-- Renders a hidden CSRF token field for security -->
+    <div>
+        {{ form.name.label }} <!-- Renders the label for the name field -->
+        {{ form.name() }} <!-- Renders the input field for the name -->
+    </div>
+    <div>
+        {{ form.course.label }} <!-- Renders the label for the course field -->
+        {{ form.course() }} <!-- Renders the input field for the course -->
+    </div>
+    <div>
+        {{ form.short_answer.label }} <!-- Renders the label for the short answer field -->
+        {{ form.short_answer() }} <!-- Renders the input field for the short answer -->
+    </div>
+    <div>
+        {{ form.long_answer.label }} <!-- Renders the label for the long answer field -->
+        {{ form.long_answer() }} <!-- Renders the input field for the long answer -->
+    </div>
+    <div>
+        {{ form.satisfaction.label }} <!-- Renders the label for the satisfaction field -->
+        {{ form.satisfaction() }} <!-- Renders the select dropdown for satisfaction -->
+    </div>
+    <div>
+        {{ form.recommend.label }}<br> <!-- Renders the label for the recommendation field -->
+        {{ form.recommend() }} <!-- Renders the radio buttons for recommendation -->
+    </div>
+    <div>
+        {{ form.improvements.label }} <!-- Renders the label for the improvement field -->
+        {{ form.improvements() }} <!-- Renders the input field for improvements -->
+    </div>
+    <div>
+        <button type="submit">Submit</button> <!-- Submit button to submit the form -->
+    </div>
+</form> <!-- End of the HTML form -->
+
