@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField, RadioField
 from wtforms.validators import DataRequired
@@ -29,7 +29,7 @@ class FeedbackForm(FlaskForm):
 
 
 # Define a route for the root URL ('/') to handle GET and POST requests
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/forms.html', methods=['GET', 'POST'])
 def feedback():
     # Create an instance of the FeedbackForm class
     form = FeedbackForm()
@@ -58,9 +58,28 @@ def feedback():
         # Return a success message if the form is submitted successfully
         return 'Feedback submitted successfully!'
 
-    # Render the feedback_form.html template with the form instance
-    return render_template('feedback_form.html', form=form)
+    # Render the datacollectionpage.html template with the form instance
+    return render_template('forms.html', form=form)
 
+@app.route('/welcomepage.html')
+def welcome():
+    return render_template('welcomepage.html')
+
+@app.route('/')
+def redirect():
+    return render_template('welcomepage.html')
+
+@app.route('/informationpage.html')
+def information():
+    return render_template('informationpage.html')
+
+@app.route('/tips.html')
+def tips():
+    return render_template('tips.html')
+
+@app.route('/forms.html')
+def forms():
+    return render_template('forms.html')
 
 # Run the Flask application if this script is executed directly
 if __name__ == '__main__':

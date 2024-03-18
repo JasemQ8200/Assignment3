@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta-tags for a character set and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the webpage -->
+    <title>Data Collection Page - GIC Progress Assessment</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<!-- Starting of HTML body -->
+<body>
+
+    <!-- Navigation bar -->
+    <ul class="top-ul">
+        <!-- Navigation items -->
+        <li><a class="active" href="welcomepage.html">Home</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="forms.html">Form</a></li>
+        <li><a href="informationpage.html">About</a></li>
+    </ul>
+
+    <!-- Main content section -->
+    <div class="container">
+        <!-- Heading -->
+        <h2>Data Collection Form</h2>
+        <!-- Introduction -->
+        <p>Please fill out the following questionnaire to help us assess your progress at GIC.</p>
+        <!-- Form -->
+        <form id="dataForm" action="" method="post">
+            <!-- Name input field -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <!-- Student number input field -->
+            <label for="student_number">Student Number:</label>
+            <input type="text" id="student_number" name="student_number" required>
+
+            <!-- Email input field -->
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Grades textarea -->
+            <label for="grades">Grades Obtained in Courses:</label>
+            <textarea id="grades" name="grades" required></textarea>
+
+            <!-- Satisfaction dropdown -->
+            <label for="satisfaction">Overall Satisfaction with Academic Experience:</label>
+            <select id="satisfaction" name="satisfaction" required>
+                <!-- Options for satisfaction -->
+                <option value="">-- Select One --</option>
+                <option value="Very satisfied">Very satisfied</option>
+                <option value="Satisfied">Satisfied</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Dissatisfied">Dissatisfied</option>
+                <option value="Very dissatisfied">Very dissatisfied</option>
+            </select>
+
+            <!-- Suggestions textarea -->
+            <label for="suggestions">Suggestions for Improvement:</label>
+            <textarea id="suggestions" name="suggestions"></textarea>
+
+            <!-- Error message container -->
+            <div id="error-message" style="color: red;"></div>
+
+            <!-- Submit button -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+<!-- Closing HTML body tag -->
+</html>
