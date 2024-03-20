@@ -3,19 +3,19 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SelectField, RadioField
 from wtforms.validators import DataRequired
 
-# Create a Flask application instance
+# Flask application instance
 app = Flask(__name__)
 
-# Set a secret key for the application (used for securely signing session cookies)
+# secret key for the application
 app.secret_key = 'secret_key'
 
 
-# Define a FlaskForm class for the feedback form using WTForms
+# FlaskForm class for the feedback form using WTForms
 class FeedbackForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    course = StringField('Course', validators=[DataRequired()])
-    short_answer = TextAreaField('Short-form Answer', validators=[DataRequired()])
-    long_answer = TextAreaField('Long-form Answer', validators=[DataRequired()])
+    student_number = StringField('Student Number', validators=[DataRequired()])
+    email = TextAreaField('Email', validators=[DataRequired()])
+    grades = TextAreaField('Grades', validators=[DataRequired()])
     satisfaction = SelectField('Overall Satisfaction', choices=[('', 'Select Satisfaction Level'),
                                                                 ('very-satisfied', 'Very Satisfied'),
                                                                 ('satisfied', 'Satisfied'),
@@ -23,67 +23,69 @@ class FeedbackForm(FlaskForm):
                                                                 ('unsatisfied', 'Unsatisfied'),
                                                                 ('very-unsatisfied', 'Very Unsatisfied')],
                                validators=[DataRequired()])
-    recommend = RadioField('Would you recommend this course to others?', choices=[('yes', 'Yes'), ('no', 'No')],
-                           validators=[DataRequired()])
     improvements = TextAreaField('Suggestions for Improvement')
 
 
-# Define a route for the root URL ('/') to handle GET and POST requests
-@app.route('/forms.html', methods=['GET', 'POST'])
+# route for the root URL to handle GET and POST requests
+@app.route('/submit', methods=['GET', 'POST'])
 def feedback():
-    # Create an instance of the FeedbackForm class
+    # an instance of the FeedbackForm class
     form = FeedbackForm()
 
-    # Check if the form is submitted and valid
+    print("test",request,form)
+    # Checking if the form is submitted and valid
     if request.method == 'POST':
         # Get data from the form
+        for i in form:
+            print(i.data)
         name = form.name.data
-        course = form.course.data
-        short_answer = form.short_answer.data
-        long_answer = form.long_answer.data
+        student_number = form.student_number.data
+        email = form.email.data
+        grades = form.grades.data
         satisfaction = form.satisfaction.data
-        recommend = form.recommend.data
         improvements = form.improvements.data
 
-        # Store data in a text file
+        # Storing data in a text file
         with open('feedback.txt', 'a') as file:
             file.write(f'Name: {name}\n')
-            file.write(f'Course: {course}\n')
-            file.write(f'Short-form Answer: {short_answer}\n')
-            file.write(f'Long-form Answer: {long_answer}\n')
+            file.write(f'Students-Number: {student_number}\n')
+            file.write(f'Email: {email}\n')
+            file.write(f'Grades: {grades}\n')
             file.write(f'Overall Satisfaction: {satisfaction}\n')
-            file.write(f'Recommend: {recommend}\n')
             file.write(f'Suggestions for Improvement: {improvements}\n\n')
 
-        # Return a success message if the form is submitted successfully
+        # Returning a success message if the form is submitted successfully
         return 'Feedback submitted successfully!'
 
-    # Render the datacollectionpage.html template with the form instance
+    # Render the forms.html template with the form instance
     return render_template('forms.html', form=form)
+
 
 @app.route('/welcomepage.html')
 def welcome():
     return render_template('welcomepage.html')
 
+
 @app.route('/')
 def redirect():
     return render_template('welcomepage.html')
+
 
 @app.route('/informationpage.html')
 def information():
     return render_template('informationpage.html')
 
+
 @app.route('/tips.html')
 def tips():
     return render_template('tips.html')
+
 
 @app.route('/forms.html')
 def forms():
     return render_template('forms.html')
 
-# Run the Flask application if this script is executed directly
+
+# Running the Flask application
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-

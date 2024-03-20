@@ -30,7 +30,7 @@
         <!-- Introduction -->
         <p>Please fill out the following questionnaire to help us assess your progress at GIC.</p>
         <!-- Form -->
-        <form id="dataForm" action="" method="post">
+        <form id="dataForm" action="/submit" method="POST">
             <!-- Name input field -->
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -60,8 +60,8 @@
             </select>
 
             <!-- Suggestions textarea -->
-            <label for="suggestions">Suggestions for Improvement:</label>
-            <textarea id="suggestions" name="suggestions"></textarea>
+            <label for="improvements">Suggestions for Improvement:</label>
+            <textarea id="improvements" name="improvements"></textarea>
 
             <!-- Error message container -->
             <div id="error-message" style="color: red;"></div>
